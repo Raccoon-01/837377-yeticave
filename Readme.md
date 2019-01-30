@@ -1,7 +1,7 @@
 # Личный проект «YetiCave»
 
 * Студент: [Жанар Темиргалиева](https://up.htmlacademy.ru/php/8/user/837377).
-* Наставник: `Неизвестно`.
+* Наставник: [Игорь Закиров](https://htmlacademy.ru/profile/id415011).
 
 ---
 
