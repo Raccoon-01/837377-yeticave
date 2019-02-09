@@ -3,8 +3,8 @@ $is_auth = rand(0, 1);
 $user_name = "Zhanar"; // укажите здесь ваше имя
 
 $categories = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];
-$index = 0;
-$num_count = count($categories);
+$img_background = ["", "promo__item--attachment", "promo__item--boots", "promo__item--clothing", "promo__item--clothing", "promo__item--clothing", "promo__item--other"];
+
 
 $first_item = [
     "title" => "2014 Rossignol District Snowboard",
@@ -44,6 +44,15 @@ $sixth_item = [
 ];
 $item_list = [$first_item , $second_item, $third_item, $fourth_item, $fifth_item, $sixth_item];
 $item_count = count($item_list);
+
+
+function sum_format (int $num_format) {
+    if ($num_format > 1000) {
+        number_format(100000, 0, '.', " ");
+        ceil($num_format);
+    }
+    return $num_format . " ₽";
+}
 ?>
 
 <!DOCTYPE html>
@@ -96,12 +105,11 @@ $item_count = count($item_list);
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
         <ul class="promo__list">
             <!--заполните этот список из массива категорий-->
-            <?php while($index < $num_count): ?>
+            <?php foreach($categories as $key => $value): ?>
                 <li class="promo__item promo__item--boards">
-                    <a class="promo__link" href="pages/all-lots.html"<?=$categories[$index];?>><?=$categories[$index];?></a>
+                    <a class="promo__link" href="pages/all-lots.html"><?=$value;?></a>
                 </li>
-                <?php $index = $index + 1; ?>
-            <?php endwhile; ?>
+            <?php endforeach; ?>
         </ul>
     </section>
     <section class="lots">
@@ -121,8 +129,9 @@ $item_count = count($item_list);
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost"><?=$value["price"]; ?><b class="rub">р</b></span>
-                        </div>
+                            <span class="lot__cost"><?=sum_format($value["price"]);
+                            ?></span>
+                        </div>git add
                         <div class="lot__timer timer">
                             12:23
                         </div>
@@ -139,12 +148,12 @@ $item_count = count($item_list);
     <nav class="nav">
         <ul class="nav__list container">
             <!--заполните этот список из массива категорий-->
-            <?php while($index < $num_count): ?>
+            <?php foreach($categories as $key => $value): ?>
                 <li class="nav__item">
-                    <a href="pages/all-lots.html<?=$categories[$index];?>"><?=$categories[$index];?></a>
+                    <a href="pages/all-lots.html"><?=$value;?></a>
                 </li>
-                <?php $index = $index + 1; ?>
-            <?php endwhile; ?>
+
+            <?php endforeach; ?>
         </ul>
     </nav>
     <div class="main-footer__bottom container">
