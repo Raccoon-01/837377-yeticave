@@ -2,8 +2,20 @@
 $is_auth = rand(0, 1);
 $user_name = "Zhanar"; // укажите здесь ваше имя
 
-$categories = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];
-$img_background = ["", "promo__item--attachment", "promo__item--boots", "promo__item--clothing", "promo__item--clothing", "promo__item--clothing", "promo__item--other"];
+$categories = [
+    ["name" => "Доски и лыжи",
+    "img_background" => "promo__item--boards"],
+    ["name" => "Крепления",
+    "img_background" => "promo__item--attachment"],
+    ["name" => "Ботинки",
+    "img_background" => "promo__item--boots"],
+    ["name" => "Одежда",
+    "img_background" => "promo__item--clothing"],
+    ["name" => "Инструменты",
+    "img_background" => "promo__item--tools"],
+    ["name" => "Разное",
+    "img_background" => "promo__item--other"]
+];
 
 
 $first_item = [
@@ -105,9 +117,9 @@ function sum_format (int $num_format) {
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
         <ul class="promo__list">
             <!--заполните этот список из массива категорий-->
-            <?php foreach($categories as $key => $value): ?>
-                <li class="promo__item promo__item--boards">
-                    <a class="promo__link" href="pages/all-lots.html"><?=$value;?></a>
+            <?php foreach($categories as $category): ?>
+                <li class="promo__item <?=$category["img_background"];?>">
+                    <a class="promo__link" href="pages/all-lots.html"><?=$category["name"];?></a>
                 </li>
             <?php endforeach; ?>
         </ul>
@@ -131,7 +143,7 @@ function sum_format (int $num_format) {
                             <span class="lot__amount">Стартовая цена</span>
                             <span class="lot__cost"><?=sum_format($value["price"]);
                             ?></span>
-                        </div>git add
+                        </div>
                         <div class="lot__timer timer">
                             12:23
                         </div>
@@ -148,9 +160,9 @@ function sum_format (int $num_format) {
     <nav class="nav">
         <ul class="nav__list container">
             <!--заполните этот список из массива категорий-->
-            <?php foreach($categories as $key => $value): ?>
+            <?php foreach($categories as $category): ?>
                 <li class="nav__item">
-                    <a href="pages/all-lots.html"><?=$value;?></a>
+                    <a href="pages/all-lots.html"><?=$category["name"];?></a>
                 </li>
 
             <?php endforeach; ?>
