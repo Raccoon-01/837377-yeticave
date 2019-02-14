@@ -57,13 +57,28 @@ $sixth_item = [
 $item_list = [$first_item , $second_item, $third_item, $fourth_item, $fifth_item, $sixth_item];
 $item_count = count($item_list);
 
-
+/*
 function sum_format (int $num_format) {
     if ($num_format > 1000) {
         number_format(100000, 0, '.', " ");
         ceil($num_format);
     }
     return $num_format . " ₽";
+}*/
+
+function sum_format ($item_list) {
+    $numbers = str_split($item_list);
+    array_walk($numbers,
+        function(&$value) {
+        if($value > 999) {
+            $value = number_format($value, 2, ',', ' ');
+            ceil ($value);
+        }
+        }
+    );
+    $result = implode("", $numbers);
+
+    return $result .= " ₽";
 }
 ?>
 
@@ -141,7 +156,7 @@ function sum_format (int $num_format) {
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost"><?=sum_format($value["price"]);
+                            <span class="lot__cost"><?php echo sum_format($value["price"]);
                             ?></span>
                         </div>
                         <div class="lot__timer timer">
