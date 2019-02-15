@@ -1,22 +1,24 @@
-<?php $is_auth = rand(0, 1);
+<?php
+$is_auth = rand(0, 1);
 $user_name = "Zhanar"; // укажите здесь ваше имя
 
+//массив по категориям товаров
 $categories = [
     ["name" => "Доски и лыжи",
-        "img_background" => "promo__item--boards"],
+     "img_background" => "promo__item--boards"],
     ["name" => "Крепления",
-        "img_background" => "promo__item--attachment"],
+     "img_background" => "promo__item--attachment"],
     ["name" => "Ботинки",
-        "img_background" => "promo__item--boots"],
+     "img_background" => "promo__item--boots"],
     ["name" => "Одежда",
-        "img_background" => "promo__item--clothing"],
+     "img_background" => "promo__item--clothing"],
     ["name" => "Инструменты",
-        "img_background" => "promo__item--tools"],
+     "img_background" => "promo__item--tools"],
     ["name" => "Разное",
-        "img_background" => "promo__item--other"]
+     "img_background" => "promo__item--other"]
 ];
 
-
+//массив по лотам
 $first_item = [
     "title" => "2014 Rossignol District Snowboard",
     "category" => "Доски и лыжи",

@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title><?=$title;?></title>
+    <title><?=$title; ?></title>
     <link href="css/normalize.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
@@ -22,7 +22,7 @@
             <a class="main-header__add-lot button" href="pages/add-lot.html">Добавить лот</a>
 
             <nav class="user-menu">
-                <?php include("data.php");?>
+                <?php include("data.php"); ?>
                 <?php if($is_auth == 1): ?>
                     <div class="user-menu__logged">
                         <p><?=$user_name; ?></p>
@@ -44,7 +44,7 @@
     </header>
 
     <main class="container">
-        <?=$content;?>
+        <?=$content; ?>
     </main>
 </div>
 
@@ -52,9 +52,9 @@
     <nav class="nav">
         <ul class="nav__list container">
             <!--заполните этот список из массива категорий-->
-            <?php foreach($categories as $category): ?>
+            <?php foreach ($categories as $category): ?>
                 <li class="nav__item">
-                    <a href="pages/all-lots.html"><?=strip_tags($category["name"]);?></a>
+                    <a href="pages/all-lots.html"><?=strip_tags($category["name"]); ?></a>
                 </li>
 
             <?php endforeach; ?>
