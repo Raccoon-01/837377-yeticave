@@ -14,4 +14,3 @@ $layout_content = include_template(
 );
 print($layout_content);
 
-

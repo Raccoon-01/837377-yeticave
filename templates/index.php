@@ -31,7 +31,8 @@
                             <span class="lot__cost"><?php echo price_format(strip_tags($value["price"])); ?></span>
                         </div>
                         <div class="lot__timer timer">
-                            12:23
+                            <?php include("data.php"); ?>
+                            <?=$total_time; ?>
                         </div>
                     </div>
                 </div>
