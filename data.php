@@ -58,10 +58,3 @@ $sixth_item = [
 $item_list = [$first_item , $second_item, $third_item, $fourth_item, $fifth_item, $sixth_item];
 $item_count = count($item_list);
 
-//Количество часов и минут (будем считать, что каждый лот живет только до полуночи), оставшихся до истечения, указаны в карточке лота под ценой
-/*date_default_timezone_set("Asia/Almaty");
-$ts_midnight = strtotime('tomorrow');
-$secs_to_midnight = $ts_midnight - time();
-$hours = floor($secs_to_midnight / 3600);
-$minutes = floor(($secs_to_midnight % 3600) / 60);
-$total_time = $hours . " ч. " . $minutes . " мин.";*/

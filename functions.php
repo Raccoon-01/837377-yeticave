@@ -25,13 +25,12 @@ function price_format(float $item_price)
     return $price_format .= " ₽";
 };
 //функция для отсчета времени размещения лота на сайте
-function lot_timer($ts_midnight)
+function lot_timer()
 {
-    date_default_timezone_set("Asia/Almaty");
-    $ts_midnight = strtotime('tomorrow');
+    $ts_midnight = strtotime("tomorrow");
     $secs_to_midnight = $ts_midnight - time();
     $hours = floor($secs_to_midnight / 3600);
     $minutes = floor(($secs_to_midnight % 3600) / 60);
-    $lot_time = $hours . " ч. " . $minutes . " мин.";
+    $lot_time = $hours . " : " . $minutes;
     return $lot_time;
 };
