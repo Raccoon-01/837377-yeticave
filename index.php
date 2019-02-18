@@ -1,6 +1,7 @@
 <?php
 require_once("functions.php");
 require_once("data.php");
+require_once("init.php");
 $page_content = include_template(
     "../templates/index.php",
     ["item_list" => $item_list,
@@ -13,5 +14,4 @@ $layout_content = include_template(
      "title" => "Yeticave - Главная страница"]
 );
 print($layout_content);
-
 
