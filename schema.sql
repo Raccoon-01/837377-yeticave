@@ -8,8 +8,8 @@ CREATE TABLE lots (id INT AUTO_INCREMENT PRIMARY KEY, title CHAR(100) NOT NULL,
 description CHAR(200), image TEXT NOT NULL, starting_price INTEGER NOT NULL,
 date_of_creation DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
 date_of_completion DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, betting_step INTEGER NOT NULL,
-winner CHAR(50) NOT NULL REFERENCES users(id), UsersId INT NOT NULL REFERENCES users (id), FULLTEXT KEY ftk1
-(title, description), FULLTEXT KEY ftk2 (title));
+winner CHAR(50) REFERENCES users(id), UsersId INT NOT NULL REFERENCES users (id), FULLTEXT KEY ftk1
+(title), FULLTEXT KEY ftk2 (description));
 CREATE INDEX date_of_completion_and_winner ON lots(date_of_completion, winner);
 
 CREATE TABLE bets (id INT AUTO_INCREMENT PRIMARY KEY, date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
