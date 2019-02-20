@@ -1,0 +1,23 @@
+CREATE DATABASE YetiCave;
+USE YetiCave;
+
+CREATE TABLE categories (id INT AUTO_INCREMENT PRIMARY KEY, category CHAR(50), css_class CHAR(100) NOT NULL,
+LotsId INT NOT NULL REFERENCES lots(id), INDEX(category));
+
+CREATE TABLE lots (id INT AUTO_INCREMENT PRIMARY KEY, title CHAR(100) NOT NULL,
+description CHAR(200), image TEXT NOT NULL, starting_price INTEGER NOT NULL,
+date_of_creation DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+date_of_completion DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, betting_step INTEGER NOT NULL,
+winner INT REFERENCES users(id), UsersId INT NOT NULL REFERENCES users (id), FULLTEXT KEY ftk1
+(title), FULLTEXT KEY ftk2 (description));
+CREATE INDEX date_of_completion_and_winner ON lots(date_of_completion, winner);
+
+CREATE TABLE bets (id INT AUTO_INCREMENT PRIMARY KEY, date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+sum INTEGER NOT NULL, UsersId INT NOT NULL REFERENCES users (id), LotsId INT NOT NULL REFERENCES lots(id),
+INDEX(sum));
+
+CREATE TABLE users (id INT AUTO_INCREMENT PRIMARY KEY, register_date DATETIME DEFAULT CURRENT_TIMESTAMP
+NOT NULL, email CHAR(25) UNIQUE NOT NULL, name CHAR(50) NOT NULL, password TEXT(500) NOT NULL,
+avatar TEXT, contacts CHAR(100) NOT NULL, INDEX(register_date));
+
+
