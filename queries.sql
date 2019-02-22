@@ -27,10 +27,11 @@ SELECT category, css_class FROM categories ORDER BY category ASC;
 /*получить самые новые, открытые лоты.
 Каждый лот включает название, стартовую цену, ссылку на изображение, цену, название категории.
 Группировка по названию и макс. цене)*/
-SELECT l.title, l.starting_price, l.date_of_creation, l.image, c.category, MAX(b.sum)FROM lots l
+SELECT l.title, l.starting_price, l.date_of_creation, l.image, c.category, MAX(b.sum) AS "Макс предложенная цена"
+FROM lots l
 JOIN categories c ON c.lotsId = l.id
-JOIN bets b ON b.LotsId = l.id
-WHERE date_of_completion > NOW() GROUP BY l.title;
+LEFT OUTER JOIN bets b ON b.LotsId = l.id
+WHERE date_of_completion > NOW() GROUP BY l.title, l.starting_price, l.date_of_creation, l.image, c.category;
 
 /*показать лот по его id. Получите также название категории, к которой принадлежит лот*/
 SELECT l.id, c.category FROM lots l
@@ -42,5 +43,5 @@ UPDATE lots SET title = "NEW 2014 Rossignol District Snowboard" WHERE id = "1";
 /*получить список самых свежих ставок для лота по его идентификатору, ставки созданные
 не ранее 5 дней вкл., LotsId это ключ на Id лота из таблицы lots*/
 SELECT LotsId, date, sum
-FROM bets WHERE TO_DAYS(NOW())-TO_DAYS(date) <= 5;
+FROM bets WHERE LotsId = "4" AND TO_DAYS(NOW())-TO_DAYS(date) <= 20;
 
