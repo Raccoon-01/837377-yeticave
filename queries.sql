@@ -19,33 +19,27 @@ betting_step, UsersId) VALUES ("2014 Rossignol District Snowboard", "Доска 
 
 INSERT INTO bets (date, sum, UsersId, LotsId) VALUES (now(), "159999", "1", "2"), (now(), "10999", "1", "4");
 
+/*получить все категории*/
+SELECT category FROM categories ORDER BY category ASC;
+
+/*получить самые новые, открытые лоты.
+Каждый лот включает название, стартовую цену, ссылку на изображение, цену, название категории
+(у меня у всех лотов есть дата окончания согл. данным date_of_completion
+(date_of_completion DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL) в schema.sql)*/
+SELECT title, starting_price, date_of_creation, image, category, sum FROM lots, categories, bets
+WHERE date_of_completion IS NULL ORDER BY date_of_creation DESC;
+
+/*показать лот по его id. Получите также название категории, к которой принадлежит лот*/
 SELECT l.title, c.category, l.description, l.image, l.starting_price, l.date_of_creation,
        l.date_of_completion, l.betting_step
 FROM lots l
-       JOIN categories c ON l.id = c.id;
+       JOIN categories c ON l.id = c.LotsId;
 
-SELECT l.title, c.category, l.description, l.image, l.starting_price, l.date_of_creation,
-       l.date_of_completion, l.betting_step, u.name, l.winner
-FROM lots l JOIN categories c ON l.id = c.id
-            JOIN users u ON l.id - u.id;
-
-SELECT l.title, u.name, b.date, b.sum
-FROM bets b JOIN users u ON b.id = u.id
-            JOIN lots l ON b.id = l.id;
-
-SELECT l.title, l.description, l.image, l.starting_price, l.date_of_creation,
-       l.date_of_completion, l.betting_step, b.date, b.sum, u.register_date, u.email, u.name,
-       u.password, u.avatar, u.contacts, l.winner
-FROM users u JOIN lots l ON u.id = l.id
-             JOIN bets b ON u.id = b.id;
-
-SELECT category FROM categories ORDER BY category ASC;
-
-SELECT title, starting_price, date_of_creation, image, category FROM lots, categories
-WHERE date_of_creation > 2019-02-20 ORDER BY date_of_creation DESC;
-
-SELECT LotsId, category FROM categories ORDER BY LotsId ASC;
-
+/*обновить название лота по его идентификатору*/
 UPDATE lots SET title = "NEW 2014 Rossignol District Snowboard" WHERE id = "1";
 
-SELECT date, LotsId FROM bets WHERE date > 2019-02-20;
+/*получить список самых свежих ставок для лота по его идентификаторуб ставки созданные
+не ранее 5 дней вкл., LotsId это ключ на Id лота из таблицы lots*/
+SELECT LotsId, date, sum
+FROM bets WHERE TO_DAYS(NOW())-TO_DAYS(date) <= 5;
+
