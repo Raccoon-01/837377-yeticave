@@ -13,7 +13,7 @@ function include_template($name, $data)
     require $name;
     $result = ob_get_clean();
     return $result;
-};
+}
 
 //функция по форматированию стоимости
 function price_format(float $item_price)
@@ -23,7 +23,7 @@ function price_format(float $item_price)
         $price_format = number_format($round, 0, '.', " ");
     }
     return $price_format .= " ₽";
-};
+}
 //функция для отсчета времени размещения лота на сайте
 function lot_timer()
 {
@@ -33,4 +33,4 @@ function lot_timer()
     $minutes = floor(($secs_to_midnight % 3600) / 60);
     $lot_time = $hours . " : " . $minutes;
     return $lot_time;
-};
+}

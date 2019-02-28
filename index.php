@@ -2,6 +2,22 @@
 require_once("functions.php");
 require_once("data.php");
 require_once("init.php");
+require_once("db_functions.php");
+
+$item_list = getLots($con);
+if($item_list === false) {
+    $content = include_template("../templates/error.php", ["error" => mysqli_error($con)]);
+    print $content;
+    die();
+}
+
+$categories = getCategories($con);
+if($item_list === false) {
+    $content = include_template("../templates/error.php", ["error" => mysqli_error($con)]);
+    print $content;
+    die();
+}
+
 $page_content = include_template(
     "../templates/index.php",
     ["item_list" => $item_list,
@@ -14,4 +30,5 @@ $layout_content = include_template(
      "title" => "Yeticave - Главная страница"]
 );
 print($layout_content);
+
 
