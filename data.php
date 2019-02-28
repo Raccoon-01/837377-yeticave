@@ -1,7 +1,7 @@
 <?php
 $is_auth = rand(0, 1);
 $user_name = "Zhanar"; // укажите здесь ваше имя
-
+/*
 //массив по категориям товаров
 $categories = [
     ["name" => "Доски и лыжи",
@@ -57,4 +57,4 @@ $sixth_item = [
 ];
 $item_list = [$first_item , $second_item, $third_item, $fourth_item, $fifth_item, $sixth_item];
 $item_count = count($item_list);
-
+*/
