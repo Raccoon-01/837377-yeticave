@@ -6,14 +6,14 @@ require_once("db_functions.php");
 
 $item_list = getLots($con);
 if($item_list === false) {
-    $content = include_template("error.php", ["error" => mysqli_error($con)]);
+    $content = include_template("../templates/error.php", ["error" => mysqli_error($con)]);
     print $content;
     die();
 }
 
 $categories = getCategories($con);
 if($item_list === false) {
-    $content = include_template("error.php", ["error" => mysqli_error($con)]);
+    $content = include_template("../templates/error.php", ["error" => mysqli_error($con)]);
     print $content;
     die();
 }

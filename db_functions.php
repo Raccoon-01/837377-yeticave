@@ -15,9 +15,7 @@ function getLots($con)
 //функция запрос для получения списка категорий и для показа списка категорий в футере страницы
 function getCategories($con)
 {
-    $sql = "SELECT l.id, c.name, c.img_background FROM lots l "
-           . "JOIN categories c ON l.id = c.LotsId "
-           . "GROUP BY c.name";
+    $sql = "SELECT c.name, c.img_background FROM categories c ";
     $res = mysqli_query($con, $sql);
     if($res === false){
         return false;
