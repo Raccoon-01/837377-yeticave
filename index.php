@@ -12,7 +12,14 @@ if($item_list === false) {
 }
 
 $categories = getCategories($con);
-if($item_list === false) {
+if($categories === false) {
+    $content = include_template("../templates/error.php", ["error" => mysqli_error($con)]);
+    print $content;
+    die();
+}
+
+$lot = getLot($con);
+if($lot === false) {
     $content = include_template("../templates/error.php", ["error" => mysqli_error($con)]);
     print $content;
     die();
@@ -31,4 +38,9 @@ $layout_content = include_template(
 );
 print($layout_content);
 
+$lot_content = include_template(
+    "lot.php",
+    ["lot" => $lot]
+);
+print($lot_content);
 
